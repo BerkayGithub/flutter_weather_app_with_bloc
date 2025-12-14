@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const WeatherApp(title: 'Flutter Demo Home Page'),
+      home: WeatherApp(title: 'Flutter Demo Home Page'),
     );
   }
 }

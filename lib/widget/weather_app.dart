@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weather_app_with_bloc/widget/hava_durumu_resmi_widget.dart';
 import 'package:flutter_weather_app_with_bloc/widget/location_widget.dart';
 import 'package:flutter_weather_app_with_bloc/widget/max_min_sicaklik_widget.dart';
+import 'package:flutter_weather_app_with_bloc/widget/sehir_sec_widget.dart';
 import 'package:flutter_weather_app_with_bloc/widget/son_guncelleme_widget.dart';
 
 class WeatherApp extends StatelessWidget {
   final String title;
+  String secilenSehir = "Ankara";
 
-  const WeatherApp({super.key, required this.title});
+  WeatherApp({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,15 @@ class WeatherApp extends StatelessWidget {
         title: Text("Hava Durumu"),
         backgroundColor: Colors.cyan,
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(
+            onPressed: () async {
+              secilenSehir = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SehirSecWidget()),
+              );
+            },
+            icon: Icon(Icons.search),
+          ),
         ],
       ),
       body: Center(
@@ -24,7 +34,7 @@ class WeatherApp extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Center(child: LocationWidget()),
+              child: Center(child: LocationWidget(secilenSehir: secilenSehir,)),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -37,7 +47,7 @@ class WeatherApp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(child: MaxMinSicaklikWidget()),
-            )
+            ),
           ],
         ),
       ),
