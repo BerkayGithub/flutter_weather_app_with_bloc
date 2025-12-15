@@ -1,19 +1,19 @@
 import 'dart:convert';
 
-Weather weatherFromMap(String str) => Weather.fromMap(json.decode(str));
+FetchWeatherResponse fetchWeatherResponseFromMap(String str) => FetchWeatherResponse.fromMap(json.decode(str));
 
-String weatherToMap(Weather data) => json.encode(data.toMap());
+String fetchWeatherResponseToMap(FetchWeatherResponse data) => json.encode(data.toMap());
 
-class Weather {
+class FetchWeatherResponse {
   Location? location;
   Current? current;
 
-  Weather({
+  FetchWeatherResponse({
     this.location,
     this.current,
   });
 
-  factory Weather.fromMap(Map<String, dynamic> json) => Weather(
+  factory FetchWeatherResponse.fromMap(Map<String, dynamic> json) => FetchWeatherResponse(
     location: json["location"] == null ? null : Location.fromMap(json["location"]),
     current: json["current"] == null ? null : Current.fromMap(json["current"]),
   );
@@ -35,10 +35,10 @@ class Current {
   double? windKph;
   int? windDegree;
   String? windDir;
-  double? pressureMb;
+  int? pressureMb;
   double? pressureIn;
   double? precipMm;
-  double? precipIn;
+  int? precipIn;
   int? humidity;
   int? cloud;
   double? feelslikeC;
@@ -49,8 +49,8 @@ class Current {
   double? heatindexF;
   double? dewpointC;
   double? dewpointF;
-  double? visKm;
-  double? visMiles;
+  int? visKm;
+  int? visMiles;
   double? uv;
   double? gustMph;
   double? gustKph;
@@ -98,10 +98,10 @@ class Current {
     windKph: json["wind_kph"]?.toDouble(),
     windDegree: json["wind_degree"],
     windDir: json["wind_dir"],
-    pressureMb: json["pressure_mb"]?.toDouble(),
+    pressureMb: json["pressure_mb"],
     pressureIn: json["pressure_in"]?.toDouble(),
     precipMm: json["precip_mm"]?.toDouble(),
-    precipIn: json["precip_in"]?.toDouble(),
+    precipIn: json["precip_in"],
     humidity: json["humidity"],
     cloud: json["cloud"],
     feelslikeC: json["feelslike_c"]?.toDouble(),
@@ -112,8 +112,8 @@ class Current {
     heatindexF: json["heatindex_f"]?.toDouble(),
     dewpointC: json["dewpoint_c"]?.toDouble(),
     dewpointF: json["dewpoint_f"]?.toDouble(),
-    visKm: json["vis_km"]?.toDouble(),
-    visMiles: json["vis_miles"]?.toDouble(),
+    visKm: json["vis_km"],
+    visMiles: json["vis_miles"],
     uv: json["uv"]?.toDouble(),
     gustMph: json["gust_mph"]?.toDouble(),
     gustKph: json["gust_kph"]?.toDouble(),
