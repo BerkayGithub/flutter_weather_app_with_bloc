@@ -12,3 +12,12 @@ class FetchWeatherEvent extends WeatherEvent{
   List<Object?> get props => [sehirAdi];
 
 }
+
+class RefreshWeatherEvent extends WeatherEvent{
+  final String sehirAdi;
+  const RefreshWeatherEvent({required this.sehirAdi});
+
+  @override
+  List<Object?> get props => [sehirAdi];
+
+}

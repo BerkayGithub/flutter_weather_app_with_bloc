@@ -15,6 +15,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
   WeatherBloc() : super(WeatherInitial()) {
     on<FetchWeatherEvent>(_fetchWeather);
+    on<RefreshWeatherEvent>(_refreshWeather);
   }
 
   Future<void> _fetchWeather(FetchWeatherEvent event, Emitter<WeatherState> emit) async {
@@ -24,6 +25,15 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       emit(WeatherLoadedState(weather: getirilenWeather));
     }catch(e){
       emit(WeatherErrorState());
+    }
+  }
+
+  Future<void> _refreshWeather(RefreshWeatherEvent event, Emitter<WeatherState> emit) async {
+    try{
+      final Weather getirilenWeather = await weatherRepository.fetchWeather(event.sehirAdi);
+      emit(WeatherLoadedState(weather: getirilenWeather));
+    }catch(e){
+      emit(state);
     }
   }
 }
