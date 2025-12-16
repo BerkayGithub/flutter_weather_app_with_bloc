@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class HavaDurumuResmiWidget extends StatelessWidget {
-  const HavaDurumuResmiWidget({super.key});
+  final String iconUrl;
+  final String currentHeat;
+  const HavaDurumuResmiWidget({super.key, required this.iconUrl, required this.currentHeat});
 
   @override
   Widget build(BuildContext context) {
-    return const FlutterLogo(
-      size: 200,
+    return Column(
+      children: [
+        Text("$currentHeat°C", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+        Image.network(iconUrl, scale: 0.25),
+      ],
     );
   }
 }
