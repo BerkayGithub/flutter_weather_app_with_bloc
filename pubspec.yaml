@@ -38,6 +38,7 @@ dependencies:
   equatable: ^2.0.7 # This package is used to compare two different instances of the same class to see if they the same features(equals)
   get_it: ^9.2.0
   http: ^1.6.0
+  provider: ^6.1.5+1
 
 dev_dependencies:
   flutter_test:
